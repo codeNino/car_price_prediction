@@ -1,1 +1,7 @@
+numpy
+pandas
+pickle
+streamlit
+warnings
+joblib
 
