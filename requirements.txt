@@ -4,4 +4,4 @@ pickle
 streamlit
 warnings
 joblib
-
+PIL
