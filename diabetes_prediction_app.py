@@ -9,9 +9,10 @@ warnings.filterwarnings('ignore')
 
 st.write("""
 
-#Diabetes likelihood Prediction App
+Diabetes likelihood Prediction App
 
-This is a simple app to check the likelihood of diabetes in patients
+An AI enabled application that predicts the likelihood of patients being diabetic.
+Note: All predictions are non conclusive nor final.
 
 """)
 
