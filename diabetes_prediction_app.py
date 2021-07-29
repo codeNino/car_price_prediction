@@ -4,8 +4,8 @@ import pandas as pd, numpy as np
 import warnings
 warnings.filterwarnings('ignore')
 
-image = Image.open(r"C:\Users\lordn\Downloads\diabetes_treat.jpg")
-st.image(image, use_column_width=True)
+#image = Image.open(r"C:\Users\lordn\Downloads\diabetes_treat.jpg")
+#st.image(image, use_column_width=True)
 
 st.write("""
 
