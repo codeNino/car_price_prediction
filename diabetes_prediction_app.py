@@ -34,6 +34,7 @@ data = user_input_features()
 data_df = pd.DataFrame(data,index=[0])
 data_array = np.array(data_df.values)
 
+
 import joblib
 model = joblib.load("diabetes_predictor.pkl")
 
@@ -50,18 +51,15 @@ def output(pred):
     else:
         return "Likelihood of diabetes for patient is positive. \n Please make recommendations!"
 
+    
 
 if st.sidebar.button("PREDICT"):
     st.subheader("User Input Parameters")
-    if st.button("VIEW"):
-        st.write(data_df)
-    
+    st.write(data_df)
     st.subheader("PREDICTION")
     st.write(output(prediction))
-    
     st.subheader("MODEL CONFIDENCE")
-    if st.button("CHECK"):
-        st.write(confidence)
+    st.write(confidence)
 
 
 
