@@ -10,7 +10,7 @@ st.image(image, use_column_width=True)
 st.write("""
 Cars Price Prediction App
 
-This is a simple app that estimates prices of cars to help arrive at fairer prcies in negotiations
+This is a simple app that estimates prices of cars to help arrive at fairer prices in negotiations
 """)
 
 st.sidebar.header("Please input car data and features")
