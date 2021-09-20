@@ -1,11 +1,11 @@
-import streamlit as st
+import streamlit as st, pandas as pd
 from PIL import Image
-import pandas as pd, numpy as np
-import warnings
+import warnings, requests
 warnings.filterwarnings('ignore')
 
-# image = Image.open(r"C:\Users\lordn\Downloads\c6e7dfb7c951eed5cb516b56a4751632.jpg")
-# st.image(image, use_column_width=True)
+
+image = Image.open(r"C:\Users\lordn\Downloads\c6e7dfb7c951eed5cb516b56a4751632.jpg")
+st.image(image, use_column_width=True)  
 
 st.write("""
 Cars Price Prediction App
@@ -24,8 +24,8 @@ def car_input_features():
     mileage = st.sidebar.number_input(label="Enter mileage (Kmpl) ")
     engine = st.sidebar.number_input(label="Enter engine capacity (cc) ")
     max_power = st.sidebar.number_input(label="Enter engine power rating (bhp) ")
-    seats = st.sidebar.number_input(label="Enter number of seats in car")
-
+    seats = st.sidebar.slider(label="Number of seats in car", min_value=1 , max_value=10, step=1)
+    
     data = {"brand": brand,
                          "year": int(year),
                 "km_driven": int(Km_driven),
@@ -39,34 +39,14 @@ def car_input_features():
 
 data = car_input_features()
 
-def transform(data):
-    cheap = ['Opel','Ambassador','Force','Toyota', 'Fiat','Nissan','Daewoo',
-    'Renault','Volkswagen','Mitsubishi','Datsun','Chevrolet','Tata','Mahindra',
-    'Ford','Hyundai','Honda','Skoda','Maruti', 'Kia', 'Peugeot']
-    moderate = ['Jaguar', 'Opel', 'MG', 'Jeep', 'Land', 'Audi', 'Volvo', 'Benz']
-    expensive = ['Lexus', 'BMW']
-    data['brand'] = [0 if data['brand'].capitalize() in cheap else 1 if data['brand'].capitalize() in  moderate else 2 if data['brand'].capitalize() in expensive else 1][0]
-    data['transmission'] = [0 if data['brand'] == 'Manual' else 1][0]
-    return data
+result = requests.post('http://127.0.0.1:8000/predict', json=data)
 
-tranformed_data = transform(data)
-
-data_df = pd.DataFrame(tranformed_data, index=[0])
-data_array = np.array(data_df.values)
-
-
-import joblib
-model = joblib.load("car_price_estimator.pkl")
-
-prediction = model.predict(data_array)
+data_df = pd.DataFrame(data, index=[0])
+prediction = result.json()["PREDICTION"]
 
     
 if st.sidebar.button("PREDICT"):
-    st.subheader("Car Input Parameters")
+    st.subheader("Car Features")
     st.write(data_df)
     st.subheader("PREDICTION")
-    st.write(f"The car you are looking to buy will cost you ${int(round(prediction[0]))}.\n Good luck raising the money!!")
-
-
-
-
+    st.write(f"The car you are looking to buy will cost you ${int(round(prediction))}.\n Good luck raising the money!!")
