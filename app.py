@@ -4,7 +4,7 @@ import warnings, requests
 warnings.filterwarnings('ignore')
 
 
-image = Image.open(r"C:\Users\lordn\Downloads\c6e7dfb7c951eed5cb516b56a4751632.jpg")
+image = Image.open(r"images/c6e7dfb7c951eed5cb516b56a4751632.jpg")
 st.image(image, use_column_width=True)  
 
 st.write("""
