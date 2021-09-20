@@ -39,13 +39,14 @@ def car_input_features():
 
 data = car_input_features()
 
-result = requests.post('http://car-price-estimator-app.herokuapp.com/predict', json=data)
-
 data_df = pd.DataFrame(data, index=[0])
-prediction = result.json()["PREDICTION"]
 
     
 if st.sidebar.button("PREDICT"):
+
+    result = requests.post('http://car-price-estimator-app.herokuapp.com/predict', json=data)
+    prediction = result.json()["PREDICTION"]
+
     st.subheader("Car Features")
     st.write(data_df)
     st.subheader("PREDICTION")
