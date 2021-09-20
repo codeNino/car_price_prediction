@@ -39,7 +39,7 @@ def car_input_features():
 
 data = car_input_features()
 
-result = requests.post('http://127.0.0.1:8000/predict', json=data)
+result = requests.post('http://car-price-estimator-app.herokuapp.com/predict', json=data)
 
 data_df = pd.DataFrame(data, index=[0])
 prediction = result.json()["PREDICTION"]
