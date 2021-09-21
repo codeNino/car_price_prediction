@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 import pandas as pd, numpy as np
 import joblib
 from zipfile import ZipFile
+import uvicorn
 
 file_name = "model.zip"
 
@@ -46,3 +47,6 @@ async def predict(request: Request):
     response = {'PREDICTION': prediction}
 
     return response
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=5000)
