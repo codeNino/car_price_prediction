@@ -3,5 +3,4 @@ joblib
 pandas
 numpy
 sklearn
-zipfile
 uvicorn
