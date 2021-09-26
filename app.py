@@ -41,7 +41,7 @@ async def predict(request: Request):
     data_array = np.array(data_df.values)
 
 
-    # model = joblib.load("car_price_estimator.pkl")
+  
     prediction = model.predict(data_array)[0]
 
     response = {'PREDICTION': prediction}
